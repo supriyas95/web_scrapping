@@ -1,12 +1,12 @@
-# 🧠 Large Language Models (LLMs) — Comprehensive Encyclopedia
+# Large Language Models (LLMs) — Comprehensive Encyclopedia
 
-### 📘 Overview
+### Overview
 This project presents a **Wikipedia-style encyclopedia** of major **Large Language Models (LLMs)**, covering their **history, versions, ownership, advantages/disadvantages, pricing, and future directions**.  
 The content is structured in a clean, responsive **HTML page** generated through a **Jupyter Notebook** using Python and BeautifulSoup-compatible HTML formatting.
 
 ---
 
-## 📂 Repository Contents
+## Repository Contents
 
 | File Name | Description |
 |------------|-------------|
@@ -16,7 +16,7 @@ The content is structured in a clean, responsive **HTML page** generated through
 
 ---
 
-## 🚀 Features
+## Features
 
 - **Comprehensive Coverage** — Details 13+ major LLM families (OpenAI, Anthropic, Google, Meta, Mistral, xAI, Cohere, Alibaba, Microsoft, DeepSeek, Databricks, IBM, Stability, etc.).
 - **Structured Layout** — Clear HTML sections with navigation (`History`, `Catalog`, `Comparison`, `Dictionary`, etc.).
@@ -27,9 +27,8 @@ The content is structured in a clean, responsive **HTML page** generated through
 
 ---
 
-## 🧩 Code Structure & Explanation
+## Code Structure & Explanation
 
-```bash
 LLM_Encyclopedia.ipynb
 │
 ├── 1️⃣ Import and Setup
