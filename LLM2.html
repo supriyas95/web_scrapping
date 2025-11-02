@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Large Language Models — Comprehensive Encyclopedia</title>
+  <style>
+    :root{
+      --bg:#f8f9fa; --text:#202122; --muted:#6a737d; --link:#0645ad; --link-visited:#0b0080;
+      --table-border:#a2a9b1; --infobox:#f8f9fa; --highlight:#eaf3ff; --success:#0b6; --danger:#b00;
+      --pricing-highlight:#fff3cd; --pricing-border:#ffeaa7;
+    }
+    html,body{background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;}
+    a{color:var(--link);text-decoration:none} a:visited{color:var(--link-visited)} a:hover{text-decoration:underline}
+    .container{max-width:1200px;margin:0 auto;padding:1rem 1.25rem}
+    header{display:flex;align-items:center;gap:1rem;border-bottom:1px solid var(--table-border);padding-bottom:.6rem;margin-bottom:1rem}
+    header h1{font-size:2rem;margin:0}
+    .subtitle{color:var(--muted);font-size:.95rem}
+    .toc{background:#fff;border:1px solid var(--table-border);padding:1rem;border-radius:.5rem}
+    .toc h2{margin:.2rem 0 .6rem 0;font-size:1.1rem}
+    .toc ol{margin:.25rem 0 .5rem 1rem}
+    .toc li{margin:.15rem 0}
+    .infobox{float:right;background:var(--infobox);border:1px solid var(--table-border);padding:.75rem;border-radius:.5rem;margin:0 0 1rem 1rem;width:320px}
+    .infobox h3{margin:.2rem 0 .5rem 0}
+    .infobox table{width:100%;border-collapse:collapse;font-size:.95rem}
+    .infobox th,.infobox td{padding:.25rem .3rem;border-bottom:1px solid var(--table-border);vertical-align:top}
+    .section{clear:both;}
+    h2{border-bottom:1px solid var(--table-border);padding-bottom:.25rem;margin-top:2.25rem}
+    h3{margin-top:1.25rem}
+    .lead{font-size:1.05rem}
+    .tag{display:inline-block;background:var(--highlight);padding:.1rem .4rem;border-radius:.25rem;font-size:.8rem;margin:.1rem .25rem}
+    .notice{background:#fff8e1;border:1px solid #f1d18a;padding:.75rem;border-radius:.5rem}
+    .table{width:100%;border-collapse:collapse;background:#fff}
+    .table th,.table td{border:1px solid var(--table-border);padding:.5rem;vertical-align:top}
+    .table th{background:#f3f4f6}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+    .footnote{color:var(--muted);font-size:.9rem}
+    .pill{font-weight:600}
+    .good{color:var(--success)}
+    .bad{color:var(--danger)}
+    code{background:#eef;padding:.1rem .3rem;border-radius:.25rem}
+    .small{font-size:.9rem}
+    .pricing-table {background:var(--pricing-highlight);border:1px solid var(--pricing-border);padding:.75rem;border-radius:.5rem;margin:1rem 0}
+    .pricing-table h4{margin-top:0}
+    .pricing-table table{width:100%;border-collapse:collapse;font-size:.9rem}
+    .pricing-table th,.pricing-table td{padding:.25rem .3rem;border-bottom:1px solid var(--table-border);vertical-align:top}
+    .pricing-table th{background:#f8f9fa}
+    .price-high{color:#d63031;font-weight:600}
+    .price-medium{color:#e17055;font-weight:600}
+    .price-low{color:#00b894;font-weight:600}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/63/Wikipedia-logo.png" alt="globe" width="40" height="40" />
+      <div>
+        <h1>Large Language Models (LLMs) — Comprehensive Encyclopedia</h1>
+        <div class="subtitle">A Wikipedia‑style, neutral overview of major LLM families, their history, ownership, versions, capabilities, limitations, pricing (indicative), and roadmaps. <span class="small">Last compiled: <b>Nov 1, 2025</b>. Prices and specs change often.</span></div>
+      </div>
+    </header>
+
+    <div class="notice">
+      <b>Note on scope & pricing:</b> The LLM space changes quickly. Pricing varies by region, tier (free, pro, enterprise), and token/window sizes. Treat the pricing below as <i>indicative bands</i> and verify on the provider's official pricing pages before purchase.
+    </div>
+
+    <aside class="infobox">
+      <h3>At a glance</h3>
+      <table>
+        <tr><th>Paradigm</th><td>Transformer‑based autoregressive models (with mixtures‑of‑experts, long‑context variants, tool use).</td></tr>
+        <tr><th>Key modalities</th><td>Text, Code; increasingly <i>multimodal</i> (image, audio, video, vision‑language‑action).</td></tr>
+        <tr><th>Common uses</th><td>Chat/QA, coding, analysis, search, agents, summarization, RAG, creative writing, automation.</td></tr>
+        <tr><th>Risks</th><td>Hallucinations, privacy, bias, IP, safety/abuse, cost overruns, dependency on vendors.</td></tr>
+        <tr><th>Mitigations</th><td>RAG/grounding, system prompts, evaluation, guardrails, human review, caching, rate limiting.</td></tr>
+      </table>
+    </aside>
+
+    <nav class="toc">
+      <h2>Contents</h2>
+      <ol>
+        <li><a href="#history">History</a></li>
+        <li><a href="#catalog">Model Catalog</a>
+          <ol>
+            <li><a href="#openai">OpenAI — GPT family</a></li>
+            <li><a href="#anthropic">Anthropic — Claude family</a></li>
+            <li><a href="#google">Google — Gemini family</a></li>
+            <li><a href="#meta">Meta — Llama family</a></li>
+            <li><a href="#mistral">Mistral</a></li>
+            <li><a href="#xai">xAI — Grok</a></li>
+            <li><a href="#cohere">Cohere — Command</a></li>
+            <li><a href="#qwen">Alibaba — Qwen</a></li>
+            <li><a href="#microsoft">Microsoft — Phi</a></li>
+            <li><a href="#deepseek">DeepSeek</a></li>
+            <li><a href="#dbrx">Databricks — DBRX</a></li>
+            <li><a href="#ibm">IBM — Granite</a></li>
+            <li><a href="#stability">Stability / Others</a></li>
+          </ol>
+        </li>
+        <li><a href="#compare">Comparison Tables</a></li>
+        <li><a href="#usecases">What each is good at</a></li>
+        <li><a href="#pricing">Pricing (indicative)</a></li>
+        <li><a href="#future">Future & Rumored Models</a></li>
+        <li><a href="#dictionary">Dictionary of Key Terms</a></li>
+        <li><a href="#references">References</a></li>
+      </ol>
+    </nav>
+
+    <section id="history" class="section">
+      <h2>History</h2>
+      <p class="lead">
+        Large language models evolved from advances in neural NLP (word embeddings, sequence models) and the 2017
+        <i>Transformer</i> architecture. Early milestones included GPT‑2 (2019) and GPT‑3 (2020), which popularized zero‑shot
+        and few‑shot learning. Post‑2022, instruction‑tuning and RLHF enabled helpful, harmless chat assistants. From 2023–2025,
+        vendors released long‑context, multimodal, and Mixture‑of‑Experts (MoE) models, with open‑weight ecosystems
+        (e.g., Llama, Mistral, Qwen) accelerating innovation in research and enterprise.
+      </p>
+    </section>
+
+    <section id="catalog" class="section">
+      <h2>Model Catalog</h2>
+
+      <!-- OPENAI -->
+      <article id="openai">
+        <h3>OpenAI — GPT family</h3>
+        <p><span class="tag pill">Company:</span> OpenAI (partnered with Microsoft Azure for cloud distribution)</p>
+        <p><span class="tag">Notable models:</span> GPT‑3/3.5 (2020–2022), GPT‑4 (2023), GPT‑4 Turbo (2023–24), GPT‑4o (2024), GPT‑4.1 series (2024), later <em>o‑series</em> and reasoning‑enhanced variants (2024–2025).</p>
+        <div class="grid">
+          <div>
+            <h4>History & Ownership</h4>
+            <ul>
+              <li>Founded 2015; shift to capped‑profit 2019. Strategic partnership with Microsoft (Azure OpenAI Service).</li>
+              <li>Popularized RLHF chat assistants; introduced multimodal GPT‑4o (text‑vision‑audio).</li>
+            </ul>
+            <h4>Advantages</h4>
+            <ul>
+              <li>State‑of‑the‑art reasoning & coding (flagship tiers), broad multimodal support, strong tool‑use ecosystem.</li>
+              <li>Mature safety systems, wide third‑party integrations, agents/tool‑calling.</li>
+            </ul>
+            <h4>Disadvantages</h4>
+            <ul>
+              <li>Closed weights; pricing subject to change; enterprise governance may require Azure tenancy.</li>
+              <li>Latency and context limits vary by model; model updates can deprecate older behaviors.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Versions & Capabilities</h4>
+            <table class="table small">
+              <tr><th>Version</th><th>Release window</th><th>Highlights</th></tr>
+              <tr><td>GPT‑3.5</td><td>2022</td><td>Instruction‑tuned chat baseline; widely adopted.</td></tr>
+              <tr><td>GPT‑4</td><td>2023</td><td>Large leap in reasoning; early vision features.</td></tr>
+              <tr><td>GPT‑4 Turbo</td><td>2023–24</td><td>Cheaper tokens; longer context.</td></tr>
+              <tr><td>GPT‑4o</td><td>2024</td><td>Native multimodality (text‑vision‑audio), faster interactive use.</td></tr>
+              <tr><td>GPT‑4.1 / o‑series</td><td>2024–25</td><td>Refined reasoning, tool use, broader contexts.</td></tr>
+            </table>
+            <h4>Typical Strengths</h4>
+            <ul>
+              <li class="good">Complex analysis & tool‑use orchestration</li>
+              <li class="good">Code generation & debugging</li>
+              <li class="good">Multimodal chat (vision/audio with 4o‑class)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pricing-table">
+          <h4>Pricing (per 1M tokens, indicative)</h4>
+          <table>
+            <tr><th>Model</th><th>Input</th><th>Output</th><th>Notes</th></tr>
+            <tr><td>GPT‑4.1 (latest)</td><td class="price-high">$30.00</td><td class="price-high">$60.00</td><td>Flagship reasoning model</td></tr>
+            <tr><td>GPT‑4o</td><td class="price-medium">$5.00</td><td class="price-medium">$15.00</td><td>Balanced multimodal</td></tr>
+            <tr><td>GPT‑4 Turbo</td><td class="price-medium">$10.00</td><td class="price-medium">$30.00</td><td>Long context, cost-effective</td></tr>
+            <tr><td>GPT‑3.5 Turbo</td><td class="price-low">$0.50</td><td class="price-low">$1.50</td><td>Budget option</td></tr>
+          </table>
+          <p class="footnote">Plus subscription: $20/month for enhanced access; Enterprise: custom pricing</p>
+        </div>
+      </article>
+
+      <!-- ANTHROPIC -->
+      <article id="anthropic">
+        <h3>Anthropic — Claude family</h3>
+        <p><span class="tag pill">Company:</span> Anthropic</p>
+        <p><span class="tag">Notable models:</span> Claude 2 (2023), Claude 3 family (Haiku, Sonnet, Opus; 2024), iterative Claude 3.5/3.7‑class updates through 2025 with improved reasoning and tool use.</p>
+        <div class="grid">
+          <div>
+            <h4>History & Ownership</h4>
+            <ul>
+              <li>Founded 2021 by former OpenAI researchers; focus on Constitutional AI and safety.</li>
+              <li>Partnered with multiple cloud vendors; strong enterprise positioning.</li>
+            </ul>
+            <h4>Advantages</h4>
+            <ul>
+              <li>Helpful, harmless, honest alignment focus; strong long‑context and document analysis.</li>
+              <li>Competitive coding & reasoning in top‑tier variants.</li>
+            </ul>
+            <h4>Disadvantages</h4>
+            <ul>
+              <li>Closed weights; some tools/features roll out regionally.</li>
+              <li>Pricing at the high end for flagship tiers.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Versions & Capabilities</h4>
+            <table class="table small">
+              <tr><th>Version</th><th>Release window</th><th>Highlights</th></tr>
+              <tr><td>Claude 2</td><td>2023</td><td>Early long‑context assistant; strong summaries.</td></tr>
+              <tr><td>Claude 3 (Haiku/Sonnet/Opus)</td><td>2024</td><td>Tiered models balancing speed vs. intelligence; multimodal.</td></tr>
+              <tr><td>Claude 3.5/3.7</td><td>2024–25</td><td>Reasoning and tool‑use refinements; improved coding.</td></tr>
+            </table>
+            <h4>Typical Strengths</h4>
+            <ul>
+              <li class="good">Long‑form writing & summarization</li>
+              <li class="good">Policy‑sensitive enterprise use</li>
+              <li class="good">RAG over large docs</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pricing-table">
+          <h4>Pricing (per 1M tokens, indicative)</h4>
+          <table>
+            <tr><th>Model</th><th>Input</th><th>Output</th><th>Notes</th></tr>
+            <tr><td>Claude 3 Opus</td><td class="price-high">$15.00</td><td class="price-high">$75.00</td><td>Highest intelligence</td></tr>
+            <tr><td>Claude 3 Sonnet</td><td class="price-medium">$3.00</td><td class="price-medium">$15.00</td><td>Balanced performance</td></tr>
+            <tr><td>Claude 3 Haiku</td><td class="price-low">$0.25</td><td class="price-low">$1.25</td><td>Fast, cost-effective</td></tr>
+            <tr><td>Claude 3.5 Sonnet</td><td class="price-medium">$3.00</td><td class="price-medium">$15.00</td><td>Improved reasoning</td></tr>
+          </table>
+          <p class="footnote">Pro subscription: $20/month; Team: $30/user/month; Enterprise: custom</p>
+        </div>
+      </article>
+
+      <!-- GOOGLE -->
+      <article id="google">
+        <h3>Google — Gemini family</h3>
+        <p><span class="tag pill">Company:</span> Google / Google DeepMind</p>
+        <p><span class="tag">Notable models:</span> Gemini 1.0 (Ultra/Pro/Nano, 2023–24), Gemini 1.5 (long‑context, 2024), later 1.5/2.x family updates through 2025; tight Android/Workspace integrations.</p>
+        <div class="grid">
+          <div>
+            <h4>History & Ownership</h4>
+            <ul>
+              <li>DeepMind & Google Brain consolidation; extensive research lineage (Transformers, PaLM, Flamingo).</li>
+              <li>Strong mobile (Android) and productivity (Docs/Sheets/Gmail) ties.</li>
+            </ul>
+            <h4>Advantages</h4>
+            <ul>
+              <li>Powerful multimodality; extremely long context in 1.5‑class; on‑device Nano variants.</li>
+              <li>First‑party integration across Google products.</li>
+            </ul>
+            <h4>Disadvantages</h4>
+            <ul>
+              <li>APIs and SKUs have evolved—migration effort across versions.</li>
+              <li>Closed weights for top‑end models.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Versions & Capabilities</h4>
+            <table class="table small">
+              <tr><th>Version</th><th>Release window</th><th>Highlights</th></tr>
+              <tr><td>Gemini 1.0</td><td>2023–24</td><td>First Gemini release; Ultra/Pro/Nano tiers.</td></tr>
+              <tr><td>Gemini 1.5</td><td>2024</td><td>Very long context (hundreds of thousands of tokens).</td></tr>
+              <tr><td>Gemini 2.x</td><td>2025</td><td>Incremental quality and agentic capabilities; productized in Workspace and Android.</td></tr>
+            </table>
+            <h4>Typical Strengths</h4>
+            <ul>
+              <li class="good">Multimodal understanding & video/image analysis</li>
+              <li class="good">Ultra‑long context workflows</li>
+              <li class="good">Mobile/on‑device scenarios</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pricing-table">
+          <h4>Pricing (per 1M tokens, indicative)</h4>
+          <table>
+            <tr><th>Model</th><th>Input</th><th>Output</th><th>Notes</th></tr>
+            <tr><td>Gemini 2.0 Ultra</td><td class="price-high">$7.50</td><td class="price-high">$22.50</td><td>Highest capability</td></tr>
+            <tr><td>Gemini 1.5 Pro</td><td class="price-medium">$3.50</td><td class="price-medium">$10.50</td><td>Long context specialist</td></tr>
+            <tr><td>Gemini 1.5 Flash</td><td class="price-low">$0.35</td><td class="price-low">$1.05</td><td>Fast, cost-effective</td></tr>
+            <tr><td>Gemini Nano</td><td>Free</td><td>Free</td><td>On-device only</td></tr>
+          </table>
+          <p class="footnote">Google One AI Premium: $19.99/month; Workspace add-ons: $10-30/user/month</p>
+        </div>
+      </article>
+
+      <!-- META -->
+      <article id="meta">
+        <h3>Meta — Llama family (open‑weight)</h3>
+        <p><span class="tag pill">Company:</span> Meta</p>
+        <p><span class="tag">Notable models:</span> Llama 2 (2023), Llama 3 (2024), Llama 3.1/3.2 & multimodal variants (2024–25). Sizes from small (for edge) to large; permissive licensing (with usage terms).</p>
+        <div class="grid">
+          <div>
+            <h4>History & Ownership</h4>
+            <ul>
+              <li>Open‑weight releases catalyzed community finetunes and tooling.</li>
+              <li>Strong ecosystem: adapters, quantization, local inference, vector DB/RAG stacks.</li>
+            </ul>
+            <h4>Advantages</h4>
+            <ul>
+              <li>Open weights → on‑prem, private deployments; cost control with custom serving.</li>
+              <li>Vibrant community and rapid iteration.</li>
+            </ul>
+            <h4>Disadvantages</h4>
+            <ul>
+              <li>Top‑tier quality may trail closed SOTA at times; operations burden on self‑hosting.</li>
+              <li>License terms to review for high‑scale or sensitive use cases.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Versions & Capabilities</h4>
+            <table class="table small">
+              <tr><th>Version</th><th>Release window</th><th>Highlights</th></tr>
+              <tr><td>Llama 2</td><td>2023</td><td>Open‑weight baseline; 7B–70B.</td></tr>
+              <tr><td>Llama 3</td><td>2024</td><td>Quality jump; strong instruction tuning.</td></tr>
+              <tr><td>Llama 3.1/3.2</td><td>2024–25</td><td>Multimodal & long‑context variants; small edge models.</td></tr>
+            </table>
+            <h4>Typical Strengths</h4>
+            <ul>
+              <li class="good">Private/self‑hosted deployments</li>
+              <li class="good">Customization & domain finetunes</li>
+              <li class="good">Cost optimization</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pricing-table">
+          <h4>Pricing (self-hosted vs. hosted)</h4>
+          <table>
+            <tr><th>Model</th><th>Self-hosted</th><th>Hosted (per 1M tokens)</th><th>Notes</th></tr>
+            <tr><td>Llama 3 405B</td><td>Free (weights)</td><td class="price-medium">$0.60</td><td>Large model, high compute</td></tr>
+            <tr><td>Llama 3 70B</td><td>Free (weights)</td><td class="price-low">$0.35</td><td>Balanced performance</td></tr>
+            <tr><td>Llama 3 8B</td><td>Free (weights)</td><td class="price-low">$0.10</td><td>Fast inference</td></tr>
+            <tr><td>Llama 3.1 405B</td><td>Free (weights)</td><td class="price-medium">$0.75</td><td>Latest large model</td></tr>
+          </table>
+          <p class="footnote">Self-hosting costs: GPU/CPU infrastructure + electricity; Hosted: varies by provider</p>
+        </div>
+      </article>
+
+      <!-- MISTRAL -->
+      <article id="mistral">
+        <h3>Mistral (open‑weight & hosted)</h3>
+        <p><span class="tag pill">Company:</span> Mistral AI</p>
+        <p><span class="tag">Notable models:</span> Mistral 7B (2023), Mixtral 8×7B (MoE), Mixtral 8×22B (2024), ongoing 2025 updates; strong open‑weight performance.</p>
+        <h4>Highlights</h4>
+        <ul>
+          <li>Efficiency‑focused models; MoE for high throughput and quality.</li>
+          <li>Popular in open RAG/coding stacks; good latency/price balance when self‑hosted.</li>
+        </ul>
+        <div class="pricing-table">
+          <h4>Pricing (per 1M tokens, indicative)</h4>
+          <table>
+            <tr><th>Model</th><th>Input</th><th>Output</th><th>Notes</th></tr>
+            <tr><td>Mistral Large</td><td class="price-medium">$2.00</td><td class="price-medium">$6.00</td><td>Flagship model</td></tr>
+            <tr><td>Mixtral 8x22B</td><td class="price-low">$0.65</td><td class="price-low">$1.95</td><td>MoE, high quality</td></tr>
+            <tr><td>Mixtral 8x7B</td><td class="price-low">$0.24</td><td class="price-low">$0.72</td><td>Efficient MoE</td></tr>
+            <tr><td>Mistral 7B</td><td class="price-low">$0.15</td><td class="price-low">$0.45</td><td>Small, fast</td></tr>
+          </table>
+          <p class="footnote">Self-hosting: Free weights; Enterprise: custom pricing for support</p>
+        </div>
+      </article>
+
+      <!-- xAI -->
+      <article id="xai">
+        <h3>xAI — Grok</h3>
+        <p><span class="tag pill">Company:</span> xAI</p>
+        <p><span class="tag">Notable models:</span> Grok‑1 (2023), Grok‑1.5 (2024), Grok‑2‑class iterations (2025). Tight integration with X platform data; chat and search‑augmented experiences.</p>
+        <h4>Highlights</h4>
+        <ul>
+          <li>Real‑time info focus via X/Twitter data streams; open‑weight Grok‑1 research release (2024) for experimentation.</li>
+          <li>Humorous persona by default; enterprise features evolved in 2025.</li>
+        </ul>
+        <div class="pricing-table">
+          <h4>Pricing</h4>
+          <table>
+            <tr><th>Model</th><th>Price</th><th>Access</th><th>Notes</th></tr>
+            <tr><td>Grok-2</td><td>$16/month</td><td>X Premium+</td><td>Latest model, real-time data</td></tr>
+            <tr><td>Grok-1.5</td><td>$16/month</td><td>X Premium+</td><td>Previous generation</td></tr>
+            <tr><td>Grok-1</td><td>Free</td><td>Open weights</td><td>Research release</td></tr>
+            <tr><td>Grok API</td><td>Custom</td><td>Enterprise</td><td>Volume-based pricing</td></tr>
+          </table>
+          <p class="footnote">X Premium+ subscription required; API pricing: contact sales</p>
+        </div>
+      </article>
+
+      <!-- Cohere -->
+      <article id="cohere">
+        <h3>Cohere — Command family</h3>
+        <p><span class="tag pill">Company:</span> Cohere</p>
+        <p><span class="tag">Notable models:</span> Command, Command‑R, Command‑R+ (2024–25). Enterprise‑oriented with retrieval and tool‑use emphasis.</p>
+        <h4>Highlights</h4>
+        <ul>
+          <li>Focus on retrieval‑augmented generation and secure deployments.</li>
+          <li>Strong documentation QA and structured outputs.</li>
+        </ul>
+        <div class="pricing-table">
+          <h4>Pricing (per 1M tokens, indicative)</h4>
+          <table>
+            <tr><th>Model</th><th>Input</th><th>Output</th><th>Notes</th></tr>
+            <tr><td>Command R+</td><td class="price-medium">$3.00</td><td class="price-medium">$15.00</td><td>Advanced RAG capabilities</td></tr>
+            <tr><td>Command R</td><td class="price-low">$0.50</td><td class="price-low">$1.50</td><td>Efficient RAG model</td></tr>
+            <tr><td>Command</td><td class="price-medium">$1.50</td><td class="price-medium">$2.00</td><td>General purpose</td></tr>
+            <tr><td>Embed</td><td class="price-low">$0.10</td><td>N/A</td><td>Embeddings only</td></tr>
+          </table>
+          <p class="footnote">Enterprise: custom pricing with SLAs; Trial: $50 free credits</p>
+        </div>
+      </article>
+
+      <!-- Qwen -->
+      <article id="qwen">
+        <h3>Alibaba — Qwen family (open‑weight & hosted)</h3>
+        <p><span class="tag pill">Company:</span> Alibaba Group</p>
+        <p><span class="tag">Notable models:</span> Qwen 2/2.5 (2024), 2025 updates incl. coding/instruct and large 70B‑class; multilingual strength.</p>
+        <h4>Highlights</h4>
+        <ul>
+          <li>Open‑weight releases with competitive benchmarks; wide size range.</li>
+          <li>Good coding and multilingual performance; active finetune community.</li>
+        </ul>
+        <div class="pricing-table">
+          <h4>Pricing (per 1M tokens, indicative)</h4>
+          <table>
+            <tr><th>Model</th><th>Input</th><th>Output</th><th>Notes</th></tr>
+            <tr><td>Qwen2.5 72B</td><td class="price-medium">$1.00</td><td class="price-medium">$2.00</td><td>Large model</td></tr>
+            <tr><td>Qwen2.5 32B</td><td class="price-low">$0.75</td><td class="price-low">$1.50</td><td>Balanced performance</td></tr>
+            <tr><td>Qwen2.5 7B</td><td class="price-low">$0.50</td><td class="price-low">$1.00</td><td>Efficient</td></tr>
+            <tr><td>Qwen2-VL</td><td class="price-medium">$1.50</td><td class="price-medium">$3.00</td><td>Multimodal version</td></tr>
+          </table>
+          <p class="footnote">Self-hosting: Free weights; Enterprise support: available</p>
+        </div>
+      </article>
+
+      <!-- Microsoft Phi -->
+      <article id="microsoft">
+        <h3>Microsoft — Phi family (small models)</h3>
+        <p><span class="tag pill">Company:</span> Microsoft</p>
+        <p><span class="tag">Notable models:</span> Phi‑2 (2023), Phi‑3 family (2024), later compact reasoning‑oriented variants (2025). Small models with strong efficiency.</p>
+        <h4>Highlights</h4>
+        <ul>
+          <li>Great for on‑device or cost‑constrained scenarios; surprisingly strong reasoning for size.</li>
+          <li>Often used as local copilots, embedded agents, or safety filters.</li>
+        </ul>
+        <div class="pricing-table">
+          <h4>Pricing</h4>
+          <table>
+            <tr><th>Model</th><th>Price</th><th>Access</th><th>Notes</th></tr>
+            <tr><td>Phi-3 Medium</td><td>Free</td><td>Azure/AWS</td><td>Medium size, good performance</td></tr>
+            <tr><td>Phi-3 Small</td><td>Free</td><td>Azure/AWS</td><td>Small footprint</td></tr>
+            <tr><td>Phi-3 Mini</td><td>Free</td><td>Azure/AWS</td><td>Minimal requirements</td></tr>
+            <tr><td>Phi-3 Vision</td><td>Free</td><td>Azure</td><td>Multimodal small model</td></tr>
+          </table>
+          <p class="footnote">Free for research; Commercial use: check licensing; Azure consumption fees may apply</p>
+        </div>
+      </article>
+
+      <!-- DeepSeek -->
+      <article id="deepseek">
+        <h3>DeepSeek</h3>
+        <p><span class="tag pill">Company:</span> DeepSeek</p>
+        <p><span class="tag">Notable models:</span> DeepSeek‑Coder, DeepSeek‑V2/V3 series (2024–25). Competitive open‑weight/code‑specialized models; emphasis on efficiency.</p>
+        <h4>Highlights</h4>
+        <ul>
+          <li>Popular for code tasks and research; aggressive cost/performance in self‑hosted setups.</li>
+        </ul>
+        <div class="pricing-table">
+          <h4>Pricing (per 1M tokens, indicative)</h4>
+          <table>
+            <tr><th>Model</th><th>Input</th><th>Output</th><th>Notes</th></tr>
+            <tr><td>DeepSeek-V3</td><td class="price-low">$0.14</td><td class="price-low">$0.28</td><td>Latest general model</td></tr>
+            <tr><td>DeepSeek-V2</td><td class="price-low">$0.14</td><td class="price-low">$0.28</td><td>Previous generation</td></tr>
+            <tr><td>DeepSeek-Coder</td><td class="price-low">$0.14</td><td class="price-low">$0.28</td><td>Code specialist</td></tr>
+            <tr><td>DeepSeek-R1</td><td>Free</td><td>Free</td><td>Reasoning model</td></tr>
+          </table>
+          <p class="footnote">Self-hosting: Free weights; API: very competitive pricing; Free tier available</p>
+        </div>
+      </article>
+
+      <!-- DBRX -->
+      <article id="dbrx">
+        <h3>Databricks — DBRX</h3>
+        <p><span class="tag pill">Company:</span> Databricks</p>
+        <p><span class="tag">Notable models:</span> DBRX (Mixture‑of‑Experts, 2024), maintained as open‑weight with strong enterprise tooling around Lakehouse.</p>
+        <h4>Highlights</h4>
+        <ul>
+          <li>Tight integration with Databricks platform; governance & data lineage strengths.</li>
+        </ul>
+        <div class="pricing-table">
+          <h4>Pricing</h4>
+          <table>
+            <tr><th>Model</th><th>Price</th><th>Access</th><th>Notes</th></tr>
+            <tr><td>DBRX Base</td><td>Free</td><td>Open weights</td><td>Self-host or Databricks</td></tr>
+            <tr><td>DBRX Instruct</td><td>Free</td><td>Open weights</td><td>Instruction-tuned</td></tr>
+            <tr><td>DBRX Enterprise</td><td>Custom</td><td>Databricks platform</td><td>With support & governance</td></tr>
+            <tr><td>DBRX API</td><td class="price-low">$0.60/1M tokens</td><td>Mosaic AI</td><td>Hosted inference</td></tr>
+          </table>
+          <p class="footnote">Open weights: Free; Databricks platform: consumption-based; Enterprise: custom</p>
+        </div>
+      </article>
+
+      <!-- IBM Granite -->
+      <article id="ibm">
+        <h3>IBM — Granite</h3>
+        <p><span class="tag pill">Company:</span> IBM</p>
+        <p><span class="tag">Notable models:</span> Granite text/code families, multimodal updates through 2025; Red Hat/OpenShift and watsonx integrations.</p>
+        <h4>Highlights</h4>
+        <ul>
+          <li>Enterprise governance, security, and on‑prem/K8s deployments; industry datasets.</li>
+        </ul>
+        <div class="pricing-table">
+          <h4>Pricing</h4>
+          <table>
+            <tr><th>Model</th><th>Price</th><th>Access</th><th>Notes</th></tr>
+            <tr><td>Granite 13B</td><td>Free trial</td><td>watsonx</td><td>Entry-level enterprise</td></tr>
+            <tr><td>Granite 34B</td><td>Custom</td><td>watsonx</td><td>Mid-range performance</td></tr>
+            <tr><td>Granite 131B</td><td>Custom</td><td>watsonx</td><td>High performance</td></tr>
+            <tr><td>Granite Code</td><td>Custom</td><td>watsonx</td><td>Code-specific models</td></tr>
+          </table>
+          <p class="footnote">Free trial: Limited tokens; Enterprise: custom pricing with support; On-prem: available</p>
+        </div>
+      </article>
+
+      <!-- Stability & Others -->
+      <article id="stability">
+        <h3>Stability & Other Ecosystems</h3>
+        <ul>
+          <li><b>Stability AI:</b> Primarily image/audio models; text LLM experiments for assistants.</li>
+          <li><b>Huawei Pangu, Baidu ERNIE, Tencent Hunyuan:</b> Large Chinese ecosystem models used in industry/workflows.</li>
+          <li><b>NVIDIA NIM / NeMo:</b> Inference microservices and model catalogs (including third‑party LLMs) for accelerated serving.</li>
+        </ul>
+        <div class="pricing-table">
+          <h4>Pricing Highlights</h4>
+          <table>
+            <tr><th>Provider</th><th>Model</th><th>Price</th><th>Notes</th></tr>
+            <tr><td>Stability AI</td><td>Stable LM 2</td><td>Free (weights)</td><td>Open weights available</td></tr>
+            <tr><td>Baidu</td><td>ERNIE 4.0</td><td>Custom</td><td>Chinese market focus</td></tr>
+            <tr><td>NVIDIA</td><td>NIM microservices</td><td>Per-hour GPU</td><td>Optimized inference</td></tr>
+            <tr><td>Amazon</td><td>Titan</td><td>Free with AWS credits</td><td>AWS ecosystem</td></tr>
+          </table>
+          <p class="footnote">Many regional providers have custom enterprise pricing; Check official sites for details</p>
+        </div>
+      </article>
+    </section>
+
+    <section id="compare" class="section">
+      <h2>Comparison Tables</h2>
+
+      <h3>Model Families Overview</h3>
+      <table class="table">
+        <tr>
+          <th>Family</th><th>Owner</th><th>Open weights?</th><th>Multimodal?</th><th>Long context?</th><th>Notable strengths</th><th>Common caveats</th>
+        </tr>
+        <tr>
+          <td>OpenAI GPT</td><td>OpenAI</td><td>No</td><td>Yes (4o+)</td><td>Yes</td><td>Reasoning, coding, tools</td><td>Closed, pricing shifts</td>
+        </tr>
+        <tr>
+          <td>Anthropic Claude</td><td>Anthropic</td><td>No</td><td>Yes</td><td>Yes</td><td>Alignment, summarization</td><td>Cost at high tiers</td>
+        </tr>
+        <tr>
+          <td>Google Gemini</td><td>Google</td><td>No</td><td>Yes</td><td>Yes</td><td>Multimodal, Android/Workspace</td><td>API/sku churn</td>
+        </tr>
+        <tr>
+          <td>Meta Llama</td><td>Meta</td><td><b>Yes</b></td><td>Some variants</td><td>Yes</td><td>Open/self‑host, cost control</td><td>Ops burden</td>
+        </tr>
+        <tr>
+          <td>Mistral</td><td>Mistral AI</td><td><b>Yes</b> (most)</td><td>Some</td><td>Good</td><td>Efficiency, MoE</td><td>Top‑end may trail SOTA</td>
+        </tr>
+        <tr>
+          <td>xAI Grok</td><td>xAI</td><td>Partly (Grok‑1 research)</td><td>Yes</td><td>Good</td><td>Realtime web focus</td><td>Persona tone varies</td>
+        </tr>
+        <tr>
+          <td>Cohere Command</td><td>Cohere</td><td>No</td><td>Yes</td><td>Good</td><td>Enterprise RAG</td><td>Closed weights</td>
+        </tr>
+        <tr>
+          <td>Alibaba Qwen</td><td>Alibaba</td><td><b>Yes</b> (many)</td><td>Some</td><td>Good</td><td>Multilingual, coding</td><td>Ops/licensing review</td>
+        </tr>
+        <tr>
+          <td>Microsoft Phi</td><td>Microsoft</td><td>Some</td><td>Limited</td><td>Good (for size)</td><td>Edge/embedded</td><td>Capacity limits</td>
+        </tr>
+        <tr>
+          <td>DeepSeek</td><td>DeepSeek</td><td><b>Yes</b> (many)</td><td>Some</td><td>Good</td><td>Code & efficiency</td><td>Community ops</td>
+        </tr>
+        <tr>
+          <td>Databricks DBRX</td><td>Databricks</td><td><b>Yes</b></td><td>Some</td><td>Good</td><td>Lakehouse integration</td><td>Infra know‑how</td>
+        </tr>
+        <tr>
+          <td>IBM Granite</td><td>IBM</td><td>Some</td><td>Some</td><td>Good</td><td>Governance/security</td><td>Closed top tiers</td>
+        </tr>
+      </table>
+
+      <h3>Indicative Use‑Case Fit</h3>
+      <table class="table small">
+        <tr><th>Use case</th><th>Well‑suited families</th><th>Notes</th></tr>
+        <tr><td>Coding copilots</td><td>OpenAI GPT‑4/4.1/4o; Anthropic Claude 3.x; DeepSeek; Qwen; Llama 3.x; Mistral</td><td>For privacy, favor open‑weight self‑host (Llama/Mistral/Qwen/DeepSeek). For SOTA, consider GPT/Claude.</td></tr>
+        <tr><td>Long‑doc RAG</td><td>Claude 3.x; Gemini 1.5+; GPT‑4.x; Llama 3.x</td><td>Prioritize long context + good retrieval and citations.</td></tr>
+        <tr><td>Multimodal (vision/audio)</td><td>GPT‑4o; Gemini; Claude (vision); Llama 3.x multimodal</td><td>Evaluate latency and OCR/table extraction quality.</td></tr>
+        <tr><td>On‑device/edge</td><td>Phi; Llama small; Gem‑Nano; Mistral small</td><td>Quantize to 4‑8‑bit; ensure acceptable accuracy.</td></tr>
+        <tr><td>Enterprise governance</td><td>IBM Granite; Cohere Command; Databricks DBRX; Azure OpenAI</td><td>Auditability, data residency, SOC2/ISO, VPC.</td></tr>
+      </table>
+    </section>
+
+    <section id="usecases" class="section">
+      <h2>What each is good at (strengths & weaknesses)</h2>
+      <div class="grid">
+        <div>
+          <h4>Strengths (common)</h4>
+          <ul>
+            <li>Text understanding & generation; structured extraction; summarization.</li>
+            <li>Code generation, tests, and debugging (especially larger models).</li>
+            <li>Reasoning with tools: calling functions, search, databases, automation.</li>
+            <li>Multimodal perception (vision/audio) in select families.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Weaknesses / Risks</h4>
+          <ul>
+            <li class="bad">Hallucinations and over‑confident errors without grounding.</li>
+            <li class="bad">Context truncation and loss of instruction fidelity in very long sessions.</li>
+            <li class="bad">Cost/latency spikes under heavy load without caching/batching.</li>
+            <li class="bad">Bias, privacy, and IP concerns; vendor lock‑in.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="section">
+      <h2>Pricing Summary (indicative bands; verify before use)</h2>
+      <table class="table small">
+        <tr><th>Family</th><th>Access Modes</th><th>Typical Tiers</th><th>Indicative Notes</th></tr>
+        <tr>
+          <td>OpenAI GPT</td>
+          <td>Chat apps; API; Azure OpenAI</td>
+          <td>Free, Plus/Team/Enterprise; API per‑token</td>
+          <td>Flagship models priced higher per 1K tokens; discounted "mini"/small models offered for cost‑sensitive tasks.</td>
+        </tr>
+        <tr>
+          <td>Anthropic Claude</td>
+          <td>Web app; API; cloud partner marketplaces</td>
+          <td>Free trial; Pro/Team/Enterprise; API per‑token</td>
+          <td>Tiered pricing by model (Haiku/Sonnet/Opus‑class) and context window.</td>
+        </tr>
+        <tr>
+          <td>Google Gemini</td>
+          <td>Web/mobile; API; Workspace add‑ons</td>
+          <td>Free; Advanced; Enterprise; API per‑token</td>
+          <td>Workspace SKUs bundle features; 1.5‑class long‑context impacts price.</td>
+        </tr>
+        <tr>
+          <td>Meta Llama / Mistral / Qwen / DeepSeek</td>
+          <td>Open weights; hosted APIs</td>
+          <td>Free weights; hosted per‑token</td>
+          <td>Self‑hosting shifts cost to infra (GPU/ops). Hosted vendors price below SOTA closed models.</td>
+        </tr>
+        <tr>
+          <td>Cohere / IBM / Databricks</td>
+          <td>APIs; platforms</td>
+          <td>Enterprise plans; per‑token or compute</td>
+          <td>Emphasis on governance, SLAs, and data controls; custom quotes common.</td>
+        </tr>
+      </table>
+      <p class="footnote">For exact USD/EUR prices per 1K tokens, monthly seats, and overage policies, consult the providers' pricing pages. Many offer <i>batch</i> or <i>cached</i> rates, and <i>evaluation credits</i>.</p>
+    </section>
+
+    <section id="future" class="section">
+      <h2>Future & Rumored Models (2025+)</h2>
+      <ul>
+        <li>Next‑gen reasoning‑optimized models (sparse/mixture‑of‑experts, tool‑use centric agents).</li>
+        <li>Longer contexts becoming standard (≥1M tokens) with hierarchical memory & retrieval.</li>
+        <li>More <b>on‑device</b> and <b>private</b> models (edge GPUs/NPUs), federated fine‑tuning, and distillation.</li>
+        <li>Tighter integration with productivity suites, data warehouses, and robotic/real‑world agents.</li>
+      </ul>
+    </section>
+
+    <section id="dictionary" class="section">
+      <h2>Dictionary of Key Terms</h2>
+      <p class="lead">Definitions of technical words used throughout this encyclopedia.</p>
+      <table class="table small">
+        <tr><th>Term</th><th>Meaning</th></tr>
+        <tr><td><b>LLM (Large Language Model)</b></td><td>An AI system trained on vast text corpora to understand and generate human-like language.</td></tr>
+        <tr><td><b>Transformer</b></td><td>Neural network architecture (2017) enabling parallelized attention; basis of most LLMs.</td></tr>
+        <tr><td><b>Tokens</b></td><td>Smallest units of text processed by the model, used for pricing and counting context.</td></tr>
+        <tr><td><b>Context Window</b></td><td>The number of tokens a model can handle at once.</td></tr>
+        <tr><td><b>RLHF</b></td><td>Reinforcement Learning from Human Feedback — aligns outputs with user intent.</td></tr>
+        <tr><td><b>Fine-tuning</b></td><td>Custom training of an existing model for specialized use cases.</td></tr>
+        <tr><td><b>Mixture of Experts (MoE)</b></td><td>Technique where only relevant sub-networks activate for efficiency.</td></tr>
+        <tr><td><b>Multimodal</b></td><td>Model capable of processing multiple data types (text, images, audio).</td></tr>
+        <tr><td><b>RAG</b></td><td>Retrieval-Augmented Generation: grounding outputs with external factual sources.</td></tr>
+        <tr><td><b>Grounding</b></td><td>Tying responses to verified information.</td></tr>
+        <tr><td><b>Hallucination</b></td><td>When the model invents plausible but false content.</td></tr>
+        <tr><td><b>API</b></td><td>Interface allowing apps to communicate with the model (for automation/integration).</td></tr>
+        <tr><td><b>Open Weights</b></td><td>Model parameters publicly available for download or modification.</td></tr>
+        <tr><td><b>Closed Weights</b></td><td>Proprietary parameters, not shared publicly.</td></tr>
+        <tr><td><b>Latency</b></td><td>Delay between input and model response.</td></tr>
+        <tr><td><b>Inference</b></td><td>Generating outputs from a trained model.</td></tr>
+        <tr><td><b>Self-hosting</b></td><td>Running a model on personal or enterprise hardware.</td></tr>
+        <tr><td><b>Benchmark</b></td><td>Standardized tests to evaluate models (e.g., MMLU, GSM8K).</td></tr>
+        <tr><td><b>Agent</b></td><td>An autonomous AI system executing tasks using an LLM as its core.</td></tr>
+      </table>
+    </section>
+
+    <section id="references" class="section">
+      <h2>References & Official Pages</h2>
+      <ul>
+        <li>OpenAI (GPT) — pricing & docs</li>
+        <li>Anthropic (Claude) — pricing & docs</li>
+        <li>Google (Gemini) — pricing & docs</li>
+        <li>Meta (Llama) — model cards & repos</li>
+        <li>Mistral — releases, model cards</li>
+        <li>xAI (Grok) — product & research posts</li>
+        <li>Cohere — Command docs</li>
+        <li>Alibaba — Qwen model zoo</li>
+        <li>Microsoft — Phi papers/releases</li>
+        <li>DeepSeek — repos & papers</li>
+        <li>Databricks — DBRX model card</li>
+        <li>IBM — Granite on watsonx</li>
+      </ul>
+      <p class="footnote">Tip: keep a local <code>README.md</code> with exact pricing snapshots and commit dates for auditability.</p>
+    </section>
+
+    <footer class="section footnote">
+      <p>© 2025 LLM Encyclopedia (community‑maintained). This page aims for a neutral, Wikipedia‑like tone. Please verify pricing and specs with official sources prior to procurement or benchmarking.</p>
+    </footer>
+  </div>
+</body>
+</html>
