@@ -1,7 +1,7 @@
 # Large Language Models (LLMs) — Comprehensive Encyclopedia
 
 ## Overview
-This project presents a **Wikipedia-style encyclopedia** of major **Large Language Models (LLMs)**, covering their **history, versions, ownership, advantages/disadvantages, pricing, and future directions**.  
+This project presents a **Encyclopedia** of major **Large Language Models (LLMs)**, covering their **history, versions, ownership, advantages/disadvantages, pricing, and future directions**.  
 The content is structured in a clean, responsive **HTML page** generated through a **Jupyter Notebook** using Python and BeautifulSoup-compatible HTML formatting.
 
 The project also demonstrates the use of **Beautiful Soup**, a Python library for web scraping and HTML parsing. Beautiful Soup is used here to read, validate, and manipulate the generated HTML file (`LLM2.html`), ensuring proper structure and enabling potential data extraction workflows for data scientists.
