@@ -14,7 +14,7 @@ The project also demonstrates the use of **Beautiful Soup**, a Python library fo
 |------------|-------------|
 | `LLM_Encyclopedia.ipynb` | Jupyter Notebook containing all Python code, markdown documentation, and HTML generation logic. |
 | `LLM2.html` | Final rendered encyclopedia webpage with full content (history, catalogs, comparison tables, dictionary, etc.). |
-| `BeautifulSoup_Presentation.pptx` | Slide deck summarizing library overview, usage, and key demonstrations. |
+| `BeautifulSoup.pdf` | Slide deck summarizing library overview, usage, and key demonstrations. |
 | `assets/` *(optional)* | Folder for images, icons, or style extensions (if applicable). |
 
 ---
